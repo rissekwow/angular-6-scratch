@@ -15,3 +15,10 @@
     </div>
   </div>
 </div>
+
+<app-game-control (numberIncrementalEvent)="receiveNumberFromGame($event)"></app-game-control>
+<ul *ngFor="let number of numbers || sort">
+  <li *ngIf="number % 2 == 0"><app-even [evenNumber]="number"></app-even></li>
+  <li *ngIf="number % 2 == 1"><app-odd [oddNumber]="number"></app-odd></li>
+</ul>
+
