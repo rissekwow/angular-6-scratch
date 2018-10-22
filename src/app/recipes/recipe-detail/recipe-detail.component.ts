@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Recipe } from '../../shared/recipe.model';
+import { ShoppingListService } from '../../shopping-list.service';
+import { Router } from '../../../../node_modules/@angular/router';
 
-import { Recipe } from '../recipe.model';
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -10,9 +13,14 @@ import { Recipe } from '../recipe.model';
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
 
-  constructor() { }
+  constructor(private shoppingListService: ShoppingListService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  addIngredientsToShoppingList() {
+    this.shoppingListService.addIngredientsToShoppingList(this.recipe.ingredients);
+    this.router.navigate(["/shopping-list"]);
   }
 
 }
